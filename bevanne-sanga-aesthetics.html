@@ -1,0 +1,444 @@
+<!DOCTYPE html>
+<html lang="pt-PT">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
+  <meta name="theme-color" content="#1A3626" />
+  <meta name="description" content="Agende tratamentos clínicos na Bevanne Sanga Aesthetics & Laser, em Sommerschield, Maputo." />
+  <title>Bevanne Sanga Aesthetics & Laser | Agendamento</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Playfair+Display:wght@500;600;700&display=swap" rel="stylesheet" />
+  <style>
+    :root {
+      --cream: #f9f6f0;
+      --cream-deep: #eee8dc;
+      --green: #1a3626;
+      --green-soft: #2a4a37;
+      --gold: #c5a059;
+      --gold-light: #e1c98e;
+      --charcoal: #253027;
+      --muted: #758077;
+      --white: #fffdf9;
+      --line: rgba(197, 160, 89, 0.32);
+      --shadow: 0 22px 60px rgba(36, 45, 36, 0.12);
+      --radius-lg: 24px;
+      --radius-md: 16px;
+    }
+
+    * { box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+    body {
+      margin: 0;
+      min-width: 320px;
+      background: #eae5db;
+      color: var(--charcoal);
+      font-family: "DM Sans", -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      -webkit-font-smoothing: antialiased;
+    }
+    button, a { -webkit-tap-highlight-color: transparent; }
+    button { font: inherit; }
+
+    .app-shell {
+      position: relative;
+      width: 100%;
+      max-width: 480px;
+      min-height: 100vh;
+      margin: 0 auto;
+      overflow: hidden;
+      background:
+        radial-gradient(circle at 110% -10%, rgba(197, 160, 89, .16), transparent 34%),
+        var(--cream);
+      box-shadow: var(--shadow);
+    }
+
+    .top-glow {
+      position: absolute;
+      top: -92px;
+      left: -76px;
+      width: 220px;
+      height: 220px;
+      border-radius: 50%;
+      background: rgba(197, 160, 89, .11);
+      filter: blur(2px);
+      pointer-events: none;
+    }
+
+    .screen { padding: 26px 20px 150px; }
+    .brand-lockup { position: relative; z-index: 1; text-align: center; }
+    .brand-mark {
+      display: inline-grid;
+      place-items: center;
+      width: 52px;
+      height: 52px;
+      margin-bottom: 15px;
+      border: 1px solid var(--gold);
+      border-radius: 50%;
+      color: var(--gold);
+      font-family: "Playfair Display", serif;
+      font-size: 20px;
+      letter-spacing: .07em;
+    }
+    .eyebrow {
+      margin: 0 0 10px;
+      color: var(--gold);
+      font-size: 10px;
+      font-weight: 700;
+      letter-spacing: .24em;
+      text-transform: uppercase;
+    }
+    h1, h2, h3 { font-family: "Playfair Display", Georgia, serif; font-weight: 600; }
+    h1 {
+      max-width: 350px;
+      margin: 0 auto;
+      color: var(--green);
+      font-size: clamp(31px, 8vw, 42px);
+      line-height: 1.09;
+      letter-spacing: -.025em;
+    }
+    .trust-block { margin: 18px auto 0; max-width: 370px; }
+    .trust-line {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      margin: 6px 0;
+      color: var(--green-soft);
+      font-size: 11px;
+      font-weight: 600;
+      letter-spacing: .02em;
+    }
+    .trust-line::before {
+      content: "✦";
+      color: var(--gold);
+      font-size: 12px;
+    }
+    .location {
+      display: inline-flex;
+      align-items: center;
+      gap: 7px;
+      margin-top: 18px;
+      color: var(--muted);
+      font-size: 12px;
+    }
+    .location svg { width: 14px; height: 14px; color: var(--gold); }
+    .divider { width: 100%; height: 1px; margin: 28px 0; background: linear-gradient(90deg, transparent, var(--gold), transparent); opacity: .75; }
+
+    .view { animation: fadeIn .4s ease both; }
+    @keyframes fadeIn { from { opacity: 0; transform: translateY(8px); } to { opacity: 1; transform: none; } }
+    .section-heading { margin: 0 0 6px; color: var(--green); font-size: 26px; line-height: 1.2; }
+    .section-copy { margin: 0 0 20px; color: var(--muted); font-size: 13px; line-height: 1.6; }
+
+    .choice-grid { display: grid; gap: 13px; margin-top: 25px; }
+    .choice-card {
+      position: relative;
+      width: 100%;
+      padding: 22px 22px 21px;
+      border: 1px solid var(--line);
+      border-radius: var(--radius-lg);
+      background: rgba(255, 253, 249, .72);
+      color: var(--green);
+      text-align: left;
+      cursor: pointer;
+      box-shadow: 0 10px 25px rgba(47, 57, 45, .05);
+      transition: transform .2s ease, box-shadow .2s ease, border-color .2s ease;
+    }
+    .choice-card:hover, .choice-card:focus-visible { transform: translateY(-2px); border-color: var(--gold); box-shadow: 0 15px 32px rgba(47, 57, 45, .11); outline: none; }
+    .choice-card.primary { background: var(--green); color: var(--white); border-color: var(--green); }
+    .choice-card.primary .choice-caption { color: rgba(255,255,255,.68); }
+    .choice-icon { color: var(--gold); font-size: 24px; line-height: 1; }
+    .choice-title { display: block; margin-top: 16px; font-family: "Playfair Display", serif; font-size: 23px; line-height: 1.2; }
+    .choice-caption { display: block; margin-top: 7px; color: var(--muted); font-size: 12px; line-height: 1.5; }
+    .choice-arrow { position: absolute; right: 20px; bottom: 21px; color: var(--gold); font-size: 19px; }
+
+    .back-button {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      margin: 0 0 20px;
+      padding: 0;
+      border: 0;
+      background: transparent;
+      color: var(--green-soft);
+      font-size: 12px;
+      font-weight: 700;
+      cursor: pointer;
+    }
+    .back-button:hover { color: var(--gold); }
+    .course-panel { padding: 31px 22px; border: 1px solid var(--line); border-radius: var(--radius-lg); background: rgba(255,253,249,.72); text-align: center; }
+    .course-panel .choice-icon { margin-bottom: 18px; }
+    .course-panel h2 { margin: 0; color: var(--green); font-size: 28px; line-height: 1.2; }
+    .course-panel p { margin: 15px auto 23px; color: var(--muted); font-size: 14px; line-height: 1.65; }
+    .whatsapp-link, .schedule-button {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 9px;
+      min-height: 50px;
+      padding: 0 20px;
+      border-radius: 12px;
+      font-size: 13px;
+      font-weight: 700;
+      text-decoration: none;
+      transition: transform .2s ease, filter .2s ease;
+    }
+    .whatsapp-link:hover, .schedule-button:hover { transform: translateY(-1px); filter: brightness(1.08); }
+    .whatsapp-link { background: #2c8d59; color: white; }
+    .whatsapp-link svg, .schedule-button svg { width: 18px; height: 18px; }
+
+    .category { margin-bottom: 24px; }
+    .category-title { display: flex; align-items: center; gap: 10px; margin: 0 0 10px; color: var(--green); font-size: 17px; }
+    .category-title::after { content: ""; flex: 1; height: 1px; background: var(--line); }
+    .service-list { display: grid; gap: 8px; }
+    .service-item {
+      display: grid;
+      grid-template-columns: 1fr auto;
+      align-items: center;
+      gap: 12px;
+      padding: 14px 13px 14px 15px;
+      border: 1px solid rgba(197, 160, 89, .2);
+      border-radius: var(--radius-md);
+      background: rgba(255, 253, 249, .76);
+      transition: border-color .2s ease, background .2s ease;
+    }
+    .service-item.selected { border-color: var(--gold); background: #fffaf0; }
+    .service-name { display: block; color: var(--charcoal); font-size: 13px; font-weight: 600; line-height: 1.35; }
+    .service-meta { display: block; margin-top: 4px; color: var(--muted); font-size: 11px; }
+    .service-price { display: block; margin-top: 7px; color: var(--gold); font-size: 12px; font-weight: 700; }
+    .add-button {
+      display: grid;
+      place-items: center;
+      width: 34px;
+      height: 34px;
+      border: 1px solid var(--gold);
+      border-radius: 50%;
+      background: transparent;
+      color: var(--gold);
+      font-size: 22px;
+      font-weight: 300;
+      line-height: 1;
+      cursor: pointer;
+      transition: background .2s ease, color .2s ease, transform .2s ease;
+    }
+    .add-button:hover { transform: scale(1.05); }
+    .service-item.selected .add-button { background: var(--gold); color: var(--white); }
+
+    .cart-bar {
+      position: fixed;
+      z-index: 10;
+      right: 0;
+      bottom: 0;
+      left: 50%;
+      width: min(480px, 100%);
+      padding: 14px 20px calc(14px + env(safe-area-inset-bottom));
+      border-top: 1px solid rgba(197, 160, 89, .35);
+      background: rgba(255, 253, 249, .94);
+      box-shadow: 0 -12px 30px rgba(32, 48, 37, .12);
+      transform: translate(-50%, 110%);
+      transition: transform .32s cubic-bezier(.2,.8,.2,1);
+      backdrop-filter: blur(12px);
+    }
+    .cart-bar.visible { transform: translate(-50%, 0); }
+    .cart-inner { display: flex; align-items: center; gap: 14px; }
+    .total-label { display: block; color: var(--muted); font-size: 10px; font-weight: 700; letter-spacing: .08em; text-transform: uppercase; }
+    .total-value { display: block; margin-top: 3px; color: var(--green); font-family: "Playfair Display", serif; font-size: 19px; font-weight: 700; white-space: nowrap; }
+    .schedule-button { flex: 1; min-width: 0; padding: 0 12px; background: var(--green); color: white; }
+
+    .toast { position: fixed; z-index: 20; left: 50%; bottom: 104px; width: max-content; max-width: calc(100% - 40px); padding: 10px 14px; border-radius: 10px; background: var(--green); color: white; font-size: 12px; opacity: 0; pointer-events: none; transform: translate(-50%, 10px); transition: opacity .25s ease, transform .25s ease; }
+    .toast.show { opacity: 1; transform: translate(-50%, 0); }
+    @media (min-width: 481px) { .app-shell { min-height: 100vh; } }
+  </style>
+</head>
+<body>
+  <main class="app-shell">
+    <div class="top-glow" aria-hidden="true"></div>
+    <div class="screen">
+      <header class="brand-lockup">
+        <div class="brand-mark" aria-hidden="true">BS</div>
+        <p class="eyebrow">Aesthetics &amp; Laser</p>
+        <h1>Bevanne Sanga<br />Aesthetics &amp; Laser</h1>
+        <div class="trust-block" aria-label="Credenciais da clínica">
+          <p class="trust-line">Liderada por Somatologista</p>
+          <p class="trust-line">Diploma da África do Sul&nbsp; | &nbsp;+10 Anos de Experiência</p>
+        </div>
+        <span class="location">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><path d="M20 10c0 5-8 12-8 12S4 15 4 10a8 8 0 1 1 16 0Z"/><circle cx="12" cy="10" r="2.5"/></svg>
+          Sommerschield, Maputo
+        </span>
+      </header>
+
+      <div class="divider"></div>
+
+      <section id="landing-view" class="view" aria-labelledby="welcome-title">
+        <p class="eyebrow">A sua jornada começa aqui</p>
+        <h2 id="welcome-title" class="section-heading">Como podemos cuidar de si?</h2>
+        <p class="section-copy">Selecione uma opção para explorar uma experiência desenhada para si.</p>
+        <div class="choice-grid">
+          <button class="choice-card primary" type="button" data-view="treatments-view">
+            <span class="choice-icon" aria-hidden="true">✦</span>
+            <span class="choice-title">Tratamentos Clínicos</span>
+            <span class="choice-caption">Cuidados avançados para revelar a sua melhor versão.</span>
+            <span class="choice-arrow" aria-hidden="true">→</span>
+          </button>
+          <button class="choice-card" type="button" data-view="academy-view">
+            <span class="choice-icon" aria-hidden="true">◈</span>
+            <span class="choice-title">Academia e Formação</span>
+            <span class="choice-caption">Eleve o seu conhecimento com formação profissional.</span>
+            <span class="choice-arrow" aria-hidden="true">→</span>
+          </button>
+        </div>
+      </section>
+
+      <section id="academy-view" class="view" hidden aria-labelledby="academy-title">
+        <button class="back-button" type="button" data-back>← Voltar</button>
+        <div class="course-panel">
+          <div class="choice-icon" aria-hidden="true">◈</div>
+          <h2 id="academy-title">Academia e Formação</h2>
+          <p>Para informações sobre cursos, por favor contacte-nos no WhatsApp.</p>
+          <a class="whatsapp-link" href="https://wa.me/258856069932" target="_blank" rel="noopener">
+            <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M20.5 3.5A11.85 11.85 0 0 0 12.06 0C5.5 0 .16 5.34.16 11.9c0 2.1.55 4.16 1.59 5.98L.06 24l6.26-1.64a11.9 11.9 0 0 0 5.73 1.46h.01c6.56 0 11.9-5.34 11.9-11.9 0-3.18-1.24-6.17-3.46-8.42ZM12.06 21.8h-.01a9.87 9.87 0 0 1-5.03-1.38l-.36-.21-3.71.97.99-3.62-.23-.37a9.86 9.86 0 0 1-1.51-5.29C2.2 6.45 6.62 2.03 12.06 2.03c2.63 0 5.1 1.03 6.96 2.9a9.83 9.83 0 0 1 2.89 6.98c0 5.45-4.42 9.89-9.85 9.89Zm5.42-7.4c-.3-.15-1.75-.86-2.02-.96-.27-.1-.47-.15-.67.15-.2.3-.77.96-.94 1.16-.17.2-.35.23-.65.08-.3-.15-1.25-.46-2.38-1.47-.88-.78-1.48-1.74-1.65-2.04-.17-.3-.02-.46.13-.61.14-.14.3-.35.45-.52.15-.17.2-.3.3-.5.1-.2.05-.38-.02-.53-.07-.15-.67-1.61-.92-2.2-.24-.58-.49-.5-.67-.51h-.57c-.2 0-.52.08-.79.38-.27.3-1.04 1.01-1.04 2.47s1.07 2.87 1.22 3.07c.15.2 2.1 3.2 5.09 4.49.71.31 1.26.5 1.69.64.71.23 1.36.2 1.87.12.57-.09 1.75-.72 2-1.42.25-.7.25-1.3.17-1.42-.07-.13-.27-.2-.57-.35Z"/></svg>
+            Falar no WhatsApp
+          </a>
+        </div>
+      </section>
+
+      <section id="treatments-view" class="view" hidden aria-labelledby="treatments-title">
+        <button class="back-button" type="button" data-back>← Voltar</button>
+        <p class="eyebrow">Menu de serviços</p>
+        <h2 id="treatments-title" class="section-heading">Tratamentos Clínicos</h2>
+        <p class="section-copy">Escolha um ou mais tratamentos para criar a sua sessão personalizada.</p>
+        <div id="services-container"></div>
+      </section>
+    </div>
+
+    <aside id="cart-bar" class="cart-bar" aria-live="polite">
+      <div class="cart-inner">
+        <div>
+          <span class="total-label">Total estimado</span>
+          <strong id="total-value" class="total-value">0 MZN</strong>
+        </div>
+        <button id="schedule-button" class="schedule-button" type="button">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M20 11.5a8.1 8.1 0 0 1-8.2 8 8.3 8.3 0 0 1-4-1l-4.3 1.2 1.2-4.1a7.8 7.8 0 0 1-1.1-4.1 8.1 8.1 0 0 1 8.2-8 8.1 8.1 0 0 1 8.2 8Z"/><path d="m8.5 10.6 1.1 1.4c.8 1 1.8 1.6 3 2l1.3-1.1c.2-.2.5-.2.7-.1l1.7.8c.3.1.4.4.3.7-.2.8-.8 1.4-1.6 1.5-1.5.2-3.8-.8-5.4-2.4S7 9.7 7.2 8.2c.1-.8.7-1.4 1.5-1.6.3-.1.6 0 .7.3l.8 1.7c.1.2.1.5-.1.7l-1.6 1.3Z"/></svg>
+          Agendar via WhatsApp
+        </button>
+      </div>
+    </aside>
+    <div id="toast" class="toast" role="status"></div>
+  </main>
+
+  <script>
+    const WHATSAPP_NUMBER = '258856069932';
+    const services = [
+      { category: 'Serviços Faciais', items: [
+        { name: 'Vitamin C Facial', duration: '1h', price: 1700 },
+        { name: 'Microneedling', duration: '1h', price: 3000 },
+        { name: 'Chemical Peel (TCA)', duration: '', price: 2500 }
+      ]},
+      { category: 'Depilação a Laser', items: [
+        { name: 'Underarms', duration: '20 min', price: 2000 },
+        { name: 'Full Brazilian', duration: '40 min', price: 3000 },
+        { name: 'Full Body', duration: '2 hours', price: 15000 }
+      ]},
+      { category: 'Terapias de Massagem', items: [
+        { name: 'Swedish Massage', duration: '1h', price: 1700 },
+        { name: 'Hot Stone Therapy', duration: '1h', price: 2500 }
+      ]},
+      { category: 'Emagrecimento Corporal', items: [
+        { name: 'Pressotherapy', duration: '1 session', price: 2500 },
+        { name: 'Cavitation/RF', duration: '1 hour', price: 4000 }
+      ]}
+    ];
+
+    const selected = new Map();
+    const money = value => `${new Intl.NumberFormat('pt-PT').format(value)} MZN`;
+    const servicesContainer = document.getElementById('services-container');
+    const cartBar = document.getElementById('cart-bar');
+    const totalValue = document.getElementById('total-value');
+    const toast = document.getElementById('toast');
+
+    function renderServices() {
+      servicesContainer.innerHTML = services.map((group, groupIndex) => `
+        <div class="category">
+          <h3 class="category-title">${group.category}</h3>
+          <div class="service-list">
+            ${group.items.map((service, itemIndex) => {
+              const id = `${groupIndex}-${itemIndex}`;
+              return `
+                <div class="service-item" data-service-id="${id}">
+                  <div>
+                    <span class="service-name">${service.name}</span>
+                    ${service.duration ? `<span class="service-meta">${service.duration}</span>` : ''}
+                    <span class="service-price">${money(service.price)}</span>
+                  </div>
+                  <button class="add-button" type="button" data-service-id="${id}" aria-label="Adicionar ${service.name}" aria-pressed="false">+</button>
+                </div>`;
+            }).join('')}
+          </div>
+        </div>`;
+    }
+
+    function updateCart() {
+      const total = [...selected.values()].reduce((sum, service) => sum + service.price, 0);
+      totalValue.textContent = money(total);
+      cartBar.classList.toggle('visible', selected.size > 0);
+      document.querySelectorAll('.service-item').forEach(item => {
+        const isSelected = selected.has(item.dataset.serviceId);
+        item.classList.toggle('selected', isSelected);
+        const button = item.querySelector('.add-button');
+        button.textContent = isSelected ? '✓' : '+';
+        button.setAttribute('aria-pressed', String(isSelected));
+        button.setAttribute('aria-label', `${isSelected ? 'Remover' : 'Adicionar'} ${item.querySelector('.service-name').textContent}`);
+      });
+    }
+
+    function showToast(message) {
+      toast.textContent = message;
+      toast.classList.add('show');
+      window.clearTimeout(showToast.timer);
+      showToast.timer = window.setTimeout(() => toast.classList.remove('show'), 2600);
+    }
+
+    renderServices();
+    servicesContainer.addEventListener('click', event => {
+      const button = event.target.closest('.add-button');
+      if (!button) return;
+      const id = button.dataset.serviceId;
+      const [groupIndex, itemIndex] = id.split('-').map(Number);
+      const service = services[groupIndex].items[itemIndex];
+      if (selected.has(id)) {
+        selected.delete(id);
+      } else {
+        selected.set(id, service);
+        showToast(`${service.name} adicionado à sua sessão`);
+      }
+      updateCart();
+    });
+
+    function setView(viewId) {
+      document.querySelectorAll('.view').forEach(view => { view.hidden = view.id !== viewId; });
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    }
+
+    document.querySelectorAll('[data-view]').forEach(button => {
+      button.addEventListener('click', () => setView(button.dataset.view));
+    });
+    document.querySelectorAll('[data-back]').forEach(button => {
+      button.addEventListener('click', () => setView('landing-view'));
+    });
+
+    document.getElementById('schedule-button').addEventListener('click', () => {
+      if (!selected.size) return;
+      const lines = [...selected.values()].map(service => `${service.name}${service.duration ? ` (${service.duration})` : ''}: ${money(service.price)}`);
+      const total = [...selected.values()].reduce((sum, service) => sum + service.price, 0);
+      const message = [
+        'Olá! Gostaria de agendar os seguintes tratamentos:',
+        ...lines,
+        `Total Estimado: ${money(total)}.`,
+        'Por favor, confirmem a disponibilidade.'
+      ].join('\n');
+      const url = `https://wa.me/${WHATSAPP_NUMBER}?text=${encodeURIComponent(message)}`;
+      window.open(url, '_blank', 'noopener');
+    });
+  </script>
+</body>
+</html>
